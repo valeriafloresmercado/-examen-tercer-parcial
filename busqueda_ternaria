@@ -1,0 +1,40 @@
+import math
+
+def busqueda_ternaria(x, list):
+  min = 1
+  max = 10
+  while min <= max:
+    mid1 = min + round((max - min) / 3)
+    mid2 = max - round((max - min) / 3)
+
+    if list[mid1 - 1] == x:
+      return mid1
+
+    elif list[int(mid2 - 1)] == x:
+      return mid2
+
+    elif list[int(mid1 - 1)] > x:
+      max = mid1 - 1
+
+    elif list[int(mid2 - 1)] < x:
+      min = mid2 + 1
+
+    else:
+      min = mid1 + 1
+      max = mid2 - 1
+  return -1
+
+def text_prompt(msg):
+  try:
+    return raw_input(msg)
+  except NameError:
+    return input(msg)
+
+list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+for count in range (2):
+  x = int(text_prompt("Número a buscar: "))
+  result = busqueda_ternaria(x, list)
+  if result != -1:
+    print('El número ', x,' se encontró en la posición ', result - 1)
+  else:
+    print('Número no encontrado')
