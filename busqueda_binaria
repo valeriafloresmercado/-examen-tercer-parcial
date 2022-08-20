@@ -1,0 +1,28 @@
+def busqueda_binaria(x, list):
+  min = 1
+  max = 12
+
+  while min <= max:
+    mid = round((min + max) / 2)
+    if list[int(mid - 1)] == x:
+      return (mid - 1)
+    elif list[int(mid - 1)] < x:
+      min = mid + 1
+    else:
+      max = mid - 1
+
+  return -1
+
+def text_prompt(msg):
+  try:
+    return raw_input(msg)
+  except NameError:
+    return input(msg)
+
+list = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23]
+x = int(text_prompt("Número a buscar: "))
+result = busqueda_binaria(x, list)
+if result != -1:
+  print(''.join([str(x) for x in ['El valor buscado ', x, ' se encuentra en la posicion del indice ', result]]))
+else:
+ print(''.join([str(x) for x in ['El valor buscado ', x, ' no se encontro en el arreglo de ', len(list), " posiciones."]]))
